@@ -1,27 +1,31 @@
 #!/usr/bin/python3
 import sys
 import os
-
+"""Markdown to HTML"""
 
 def parse_heading(line):
+    """Parses a heading line and returns the heading level."""
     count = 0
     while line[count] == '#':
         count += 1
     return count
 
-def parse_list(line):
+def parse_unordered_list(line):
+    """Parses an unordered list and returns the list level."""
     count = 0
     while line[count] == '*' or line[count] == '-':
         count += 1
     return count
 
 def parse_ordered_list(line):
+    """Parses a ordered list and returns the list level."""
     count = 0
     while line[count].isdigit() or line[count] == '.':
         count += 1
     return count
 
 def convert_markdown_to_html(input_file, output_file):
+    """Converts a markdown file to html"""
     if not os.path.exists(input_file):
         sys.stderr.write(f"Missing {input_file}\n")
         sys.exit(1)
@@ -43,8 +47,9 @@ def convert_markdown_to_html(input_file, output_file):
             if in_list:
                 html_lines.append(f"</{list_type}>")
                 in_list = False
+                
         elif line.startswith('-'):
-            list_level = parse_list(line)
+            list_level = parse_unordered_list(line)
             if not in_list or list_type != "ul":
                 if in_list:
                     html_lines.append(f"</{list_type}>")
@@ -53,6 +58,7 @@ def convert_markdown_to_html(input_file, output_file):
                 list_type = "ul"
             html_line = f"<li>{line[list_level+1:]}</li>"
             html_lines.append(html_line)
+
         elif line.startswith('*'):
             list_level = parse_ordered_list(line)
             if not in_list or list_type != "ol":
@@ -63,6 +69,7 @@ def convert_markdown_to_html(input_file, output_file):
                 list_type = "ol"
             html_line = f"<li>{line[list_level+2:]}</li>"
             html_lines.append(html_line)
+
         else:
             if in_list:
                 html_lines.append(f"</{list_type}>")
