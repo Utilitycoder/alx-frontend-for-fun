@@ -1,3 +1,2 @@
-# My title
 * Hello
 * Bye
