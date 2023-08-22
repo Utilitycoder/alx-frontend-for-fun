@@ -1,29 +1,35 @@
 #!/usr/bin/python3
 import sys
 import os
+"""This script converts a markdown file to an html file"""
 
 def parse_heading(line):
+    """Returns the number of '#' characters at the beginning of the line"""
     count = 0
     while line[count] == '#':
         count += 1
     return count
 
 def parse_list(line):
+    """Returns the number of '*' or '-' characters at the beginning of the line"""
     count = 0
     while line[count] == '*' or line[count] == '-':
         count += 1
     return count
 
 def parse_ordered_list(line):
+    """Returns the number of digits at the beginning of the line"""
     count = 0
     while line[count].isdigit() or line[count] == '.':
         count += 1
     return count
 
 def is_empty(line):
+    """Returns True if the line is empty, False otherwise"""
     return not line.strip()
 
 def convert_markdown_to_html(input_file, output_file):
+    """Converts a markdown file to an html file"""
     if not os.path.exists(input_file):
         sys.stderr.write(f"Missing {input_file}\n")
         sys.exit(1)
@@ -37,9 +43,11 @@ def convert_markdown_to_html(input_file, output_file):
     in_paragraph = False
     previous_line_empty = False
 
+    """Iterate through each line of the markdown file"""
     for line in markdown_lines:
         line = line.strip()
 
+        """If the line is empty, close the list or paragraph if necessary"""
         if is_empty(line):
             if in_list:
                 html_lines.append(f"</{list_type}>")
@@ -103,7 +111,7 @@ def convert_markdown_to_html(input_file, output_file):
                     in_paragraph = True
                 line_with_br = line.replace('\n', '<br/>')
                 html_lines.append(line_with_br)
-
+    """Close the list or paragraph if necessary"""
     if in_list:
         html_lines.append(f"</{list_type}>")
     elif in_paragraph:
@@ -112,6 +120,7 @@ def convert_markdown_to_html(input_file, output_file):
     with open(output_file, 'w') as html_file:
         html_file.write('\n'.join(html_lines))
 
+"""Main function"""
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         sys.stderr.write("Usage: ./markdown2html.py <input_file> <output_file>\n")
