@@ -2,7 +2,7 @@
 
 ## Resources
 
-#### Read or watch:
+### Read or watch
 
 * [A Complete Guide to Flexbox | CSS-Tricks](https://intranet.alxswe.com/rltoken/LCE50qV1AVEaeaMudweMCg)
 * [Flexbox Froggy - A game for learning CSS flexbox](https://intranet.alxswe.com/rltoken/IcenrK3aNIqB14sqDkB6Rw)
@@ -14,6 +14,7 @@
 * [Flexplorer](https://intranet.alxswe.com/rltoken/fLtMr9fcwVXtRdcHvwXMVw)
 * [CSS Flexible Box Layout Module Level 1](https://intranet.alxswe.com/rltoken/KqtywvoD55hRnNl0z4My7A)
 * [FLEX: A simple visual cheatsheet for flexbox](https://intranet.alxswe.com/rltoken/KQx8A_LE7RBN5w-JjgrBYQ)
+
 ## Tasks
 
 | Task | File |
