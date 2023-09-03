@@ -1,6 +1,6 @@
 # Project: Accessibility
 
-This project is about accessibility and how to implement it on a website. The goal is to understand how to make a website accessible. 
+This project is about accessibility and how to implement it on a website. The goal is to understand how to make a website accessible.
 
 ## Resources
 
